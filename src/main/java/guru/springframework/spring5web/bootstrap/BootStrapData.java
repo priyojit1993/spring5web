@@ -2,9 +2,10 @@ package guru.springframework.spring5web.bootstrap;
 
 import guru.springframework.spring5web.model.Author;
 import guru.springframework.spring5web.model.Book;
+import guru.springframework.spring5web.model.Publisher;
 import guru.springframework.spring5web.repositories.AuthorRepository;
 import guru.springframework.spring5web.repositories.BookRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import guru.springframework.spring5web.repositories.PublisherRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -16,11 +17,14 @@ public class BootStrapData implements CommandLineRunner {
 
     BookRepository bookRepository;
 
+    PublisherRepository publisherRepository;
 
-    //Constructor injection
-    public BootStrapData(AuthorRepository authorRepository, BookRepository bookRepository) {
+
+    //constructor injection
+    public BootStrapData(AuthorRepository authorRepository, BookRepository bookRepository, PublisherRepository publisherRepository) {
         this.authorRepository = authorRepository;
         this.bookRepository = bookRepository;
+        this.publisherRepository = publisherRepository;
     }
 
     @Override
@@ -41,6 +45,11 @@ public class BootStrapData implements CommandLineRunner {
         bookRepository.save(spring);
 
 
+        Publisher publisher1 = new Publisher("11 xyz Street", "Cleveland", "ohio", "");
+        publisherRepository.save(publisher1);
+
+
+        System.out.println(publisherRepository.count());
         System.out.println(authorRepository.count());
         System.out.println(bookRepository.count());
 
