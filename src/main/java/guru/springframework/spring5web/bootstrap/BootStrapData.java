@@ -11,12 +11,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class BootStrapData implements CommandLineRunner {
 
-    @Autowired
+
     AuthorRepository authorRepository;
 
-    @Autowired
     BookRepository bookRepository;
 
+
+    //Constructor injection
+    public BootStrapData(AuthorRepository authorRepository, BookRepository bookRepository) {
+        this.authorRepository = authorRepository;
+        this.bookRepository = bookRepository;
+    }
 
     @Override
     public void run(String... args) throws Exception {
