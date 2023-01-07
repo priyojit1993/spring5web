@@ -2,7 +2,9 @@ package guru.springframework.spring5web.model;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Publisher {
@@ -14,15 +16,22 @@ public class Publisher {
     private String city;
     private String State;
     private String zipCode;
+    @OneToMany
+    // tells hibernate to add a column named publisher_id as foreign key in the book table to track the one to many relationship.
+    @JoinColumn(name = "publisher_id")
+    private Set<Book> books;
 
 
-    public Publisher( String addressLine1, String city, String state, String zipCode) {
+    public Publisher(String addressLine1, String city, String state, String zipCode) {
         this.addressLine1 = addressLine1;
         this.city = city;
         State = state;
         this.zipCode = zipCode;
+        books = new HashSet<Book>();
     }
 
+    public Publisher() {
+    }
 
     public Long getId() {
         return id;
@@ -30,6 +39,14 @@ public class Publisher {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Set<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(Set<Book> books) {
+        this.books = books;
     }
 
     public String getAddressLine1() {

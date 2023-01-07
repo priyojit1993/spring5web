@@ -29,6 +29,10 @@ public class BootStrapData implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        Publisher publisher1 = new Publisher("11 xyz Street", "Cleveland", "ohio", "44101");
+        publisherRepository.save(publisher1);
+
+
         Author jack = new Author("Jack", "Jones");
         Book java_design_pattern = new Book("Java Design pattern", "112344");
         jack.getBooks().add(java_design_pattern);
@@ -41,11 +45,10 @@ public class BootStrapData implements CommandLineRunner {
         rod.getBooks().add(spring);
         spring.getAuthors().add(rod);
 
+        spring.setPublisher(publisher1);
+        publisher1.getBooks().add(spring);
         authorRepository.save(rod);
         bookRepository.save(spring);
-
-
-        Publisher publisher1 = new Publisher("11 xyz Street", "Cleveland", "ohio", "");
         publisherRepository.save(publisher1);
 
 

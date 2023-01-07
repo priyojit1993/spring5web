@@ -14,6 +14,8 @@ public class Book {
     private Long id;
     private String title;
     private String isbn;
+    @ManyToOne
+    Publisher publisher;
     @ManyToMany
     /*
      * @JoinTable annotation tells hibernate to create a new table that will hold the record of books and authors ,this table
@@ -64,6 +66,15 @@ public class Book {
     public void setAuthors(Set<Author> authors) {
         this.authors = authors;
     }
+
+    public Publisher getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
+    }
+
 
     @Override
     public boolean equals(Object o) {
