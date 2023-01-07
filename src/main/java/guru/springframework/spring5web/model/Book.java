@@ -75,6 +75,9 @@ public class Book {
         this.publisher = publisher;
     }
 
+    public Long getId() {
+        return id;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -95,7 +98,7 @@ public class Book {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", isbn='" + isbn + '\'' +
-                ", authors=" + authors +
+                // removed as it will lead to circular refference", authors=" + authors +
                 '}';
     }
 }

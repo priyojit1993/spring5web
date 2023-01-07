@@ -11,6 +11,7 @@ public class Publisher {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String name;
     @Column(name = "address_line1")
     private String addressLine1;
     private String city;
@@ -22,9 +23,10 @@ public class Publisher {
     private Set<Book> books;
 
 
-    public Publisher(String addressLine1, String city, String state, String zipCode) {
+    public Publisher(String addressLine1, String city, String state, String zipCode, String name) {
         this.addressLine1 = addressLine1;
         this.city = city;
+        this.name = name;
         State = state;
         this.zipCode = zipCode;
         books = new HashSet<Book>();
@@ -79,6 +81,14 @@ public class Publisher {
 
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override

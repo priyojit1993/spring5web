@@ -55,7 +55,9 @@ public class Author {
         this.books = books;
     }
 
-
+    public Long getId() {
+        return id;
+    }
     /*
      * In order to prevent leakage from entity object we have to override the equals and hashcode method in our entity classes,because standard equals and hashcode method provided by java are not enough to prevent the leakage.
      * we have to override the equals and hashcode method based on the id property of the entity object,so that hibernated considers two entity objects(or records of relation) to be equal if they have same value for their id column.
@@ -82,7 +84,7 @@ public class Author {
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", books=" + books +
+                // removed as it will lead to circular refference", books=" + books +
                 '}';
     }
 }
